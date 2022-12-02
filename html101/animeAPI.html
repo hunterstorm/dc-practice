@@ -3,12 +3,14 @@
         <title>Anime Quote Generator</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Tangerine:wght@700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400&family=Reenie+Beanie&display=swap" rel="stylesheet">
+
 
         <style>
             *{ 
-                font-family: 'Nanum Pen Script', cursive;
-                font-size: 76px;
+                font-family: 'Reenie Beanie', cursive;
+                font-size: 68px;
+                color:rgb(30, 33, 40);
             }
             body{
                 background-image:url('../html101/css/animebckg.jpeg');
@@ -21,8 +23,22 @@
                 flex-flow:row nowrap;
                 justify-content:flex-end;
                 padding: 15px 32px;
+                font-family: 'Comic Neue', cursive;
+                font-size:48px;
                 margin-left:75%;
-                margin-top: 150px;
+                margin-top: 5%;
+                border:none;
+                border-radius:0.2em;
+                background-color:rgb(119, 128, 111);
+                color:rgb(30, 33, 40);
+            
+                
+            }
+            .generateBtn:hover{
+                cursor:pointer;
+                background-color:rgb(30, 33, 40);
+                color:rgb(146, 146, 145);
+                transition-duration: 0.4s;
             }
             .parentContainer{
                 display:flex;
@@ -68,7 +84,9 @@
                 nameRow.innerText=jsonFormatResponse.character;
                 titleRow.innerText=jsonFormatResponse.anime;
   
-                
+                if (quoteRow.innerText.length>=145){
+                    quoteRow.style.cssText="font-size:70%"
+                }
                 animeQuoteDiv.appendChild(quoteRow);
                 animeQuoteDiv.appendChild(nameRow);
                 animeQuoteDiv.appendChild(titleRow);
