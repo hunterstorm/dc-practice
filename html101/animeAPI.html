@@ -1,0 +1,92 @@
+<html>
+    <head>
+        <title>Anime Quote Generator</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Tangerine:wght@700&display=swap" rel="stylesheet">
+
+        <style>
+            *{ 
+                font-family: 'Nanum Pen Script', cursive;
+                font-size: 76px;
+            }
+            body{
+                background-image:url('../html101/css/animebckg.jpeg');
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: cover;
+            }
+            .generateBtn{
+                display:flex;
+                flex-flow:row nowrap;
+                justify-content:flex-end;
+                padding: 15px 32px;
+                margin-left:75%;
+                margin-top: 150px;
+            }
+            .parentContainer{
+                display:flex;
+                flex-flow: row nowrap;
+                justify-content:center;
+                padding-left:70%;
+                padding-top:10%;
+                margin-right:45px;
+            }
+
+            .animeQuoteDiv {
+                display:flex;
+                flex-direction:column;
+                gap:18px;
+            }
+            .titleRow{
+                font-size:70%;
+            }
+            .nameRow {
+                font-size: 70%;
+            }
+        </style>
+            
+        <script>
+            function callApiFetch(){
+                fetch ("https://animechan.vercel.app/api/random")
+                .then((r) => r.json())
+                .then((response) =>{
+                    showData(response)
+                })
+            }
+            function showData(jsonFormatResponse){
+                const animeQuoteDiv = document.getElementById("animeQuote");
+                const quoteRow = document.createElement("span"); 
+                const nameRow = document.createElement("span");
+                const titleRow = document.createElement("span");
+
+                animeQuoteDiv.className = "animeQuoteDiv";
+                nameRow.className="nameRow";
+                titleRow.className="titleRow";
+
+                quoteRow.innerText=jsonFormatResponse.quote;
+                nameRow.innerText=jsonFormatResponse.character;
+                titleRow.innerText=jsonFormatResponse.anime;
+  
+                
+                animeQuoteDiv.appendChild(quoteRow);
+                animeQuoteDiv.appendChild(nameRow);
+                animeQuoteDiv.appendChild(titleRow);
+
+                generateBtn.addEventListener ('click',()=>{
+                    animeQuoteDiv.removeChild(quoteRow);
+                    animeQuoteDiv.removeChild(nameRow);
+                    animeQuoteDiv.removeChild(titleRow);
+                })
+            }
+        </script>
+    </head>
+    <body>
+        <div id="parentContainer" class="parentContainer">
+            <div id="animeQuote" class="animeQuote">
+            </div>
+        </div>
+        <button id="generateBtn" class="generateBtn" onclick="callApiFetch()">Generate Quote</button>
+        
+    </body>
+</html>
